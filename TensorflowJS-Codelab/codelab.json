@@ -1,0 +1,23 @@
+{
+  "environment": "web",
+  "source": "1x46bysVRxbyXpd1lCYFamoj5nkOHbSquW6u5Ngl9qY4",
+  "format": "html",
+  "prefix": "../../",
+  "mainga": "UA-49880327-14",
+  "updated": "2018-11-17T19:13:08Z",
+  "id": "neural-tensorflow-js",
+  "duration": 65,
+  "title": "Simple Neural Network using Tensorflow JS",
+  "author": "aayush",
+  "summary": "In this codelab, you'll build a simple neural network using Tensorflow JS",
+  "theme": "web",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "Web"
+  ],
+  "tags": [],
+  "feedback": "https://github.com/aayusharora/TensorflowJS-NeuralNet/issues",
+  "url": "neural-tensorflow-js"
+}

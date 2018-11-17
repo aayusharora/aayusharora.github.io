@@ -1,0 +1,215 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Simple Neural Network using Tensorflow JS</title>
+  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../elements/codelab.html">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <style is="custom-style">
+    body {
+      font-family: "Roboto",sans-serif;
+      background: var(--google-codelab-background, #F8F9FA);
+    }
+  </style>
+  
+</head>
+<body unresolved class="fullbleed">
+
+  <google-codelab title="Simple Neural Network using Tensorflow JS"
+                  environment="web"
+                  feedback-link="https://github.com/aayusharora/TensorflowJS-NeuralNet/issues">
+    
+      <google-codelab-step label="Introduction" duration="10">
+        <p>This codelab will walk you through creating your own neural network, using Tensorflow.js, and train it using Iris dataset, and then will help you to categorize Iris dataset into three classes.</p>
+<aside class="special"><p>Looking for more? Check out the documentation <a href="https://js.tensorflow.org/#getting-started" target="_blank">here</a>.</p>
+</aside>
+<h2><strong>What you will build</strong></h2>
+<table>
+<tr><td colspan="1" rowspan="1"><p><img style="max-width: 182.00px" src="img/6a332637b2f5f114.png"><img style="max-width: 195.39px" src="img/c203d26188292f59.png"><img style="max-width: 195.13px" src="img/83a7d9d6538a7997.png"></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>In this codelab, you&#39;re going to build a simple neural network that can classify irises into three classes using Tensorflow JS:</p>
+<ol type="1" start="1">
+<li>Setosa </li>
+<li>Virginica</li>
+<li>Versicolor</li>
+</ol>
+<p>Dataset Used: <a href="https://www.kaggle.com/rtatman/iris-dataset-json-version" target="_blank">Iris</a></p>
+</td></tr>
+</table>
+<h2 class="checklist"><strong>What you&#39;ll learn</strong></h2>
+<ul class="checklist">
+<li>How to convert data into the Tensorflow JS format</li>
+<li>How to create a model</li>
+<li>How to compile the model</li>
+</ul>
+<h2><strong>What you&#39;ll need</strong></h2>
+<ul>
+<li>A recent version of <a href="https://nodejs.org/en/" target="_blank">node and npm</a></li>
+<li>A text editor</li>
+<li>Basic knowledge of Javascript</li>
+</ul>
+<p>This codelab is focused on Tensorflow JS. Less relevant concepts and code blocks are glossed over and are provided for you to simply copy and paste.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Getting set up" duration="0">
+        <h2><strong>Download the Code</strong></h2>
+<p>Click the following link to download all the code for this codelab:</p>
+<p><a href="https://drive.google.com/drive/folders/1ybwQ3uJJklJUUeUQ2O3cbbblOHXF-gVE?usp=sharing" target="_blank"><paper-button class="colored" raised><iron-icon icon="file-download"></iron-icon>Download source code</paper-button></a></p>
+<p>This will provide you a root folder <code>(TensorflowJS-NeuralNet)</code>, which contains </p>
+<p>The file <code>( index.js )</code>, the  dataset <code>( iris.json)</code>. We&#39;ll be doing all our coding work in the file called <code>( index.js ).</code></p>
+<h2><strong>Running the project</strong></h2>
+<p>To run the project, you need to run the command ( npm install )  from the root directory ( TensorflowJS-NeuralNet ).</p>
+<p>Once the packages are successfully installed, you will be able to see this:</p>
+<p><img style="max-width: 636.00px" src="img/ff6c385d01722c3f.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Converting the Data" duration="5">
+        <h2><strong>How to convert the data into the Tensorflow JS format?</strong></h2>
+<p> tf.tensor2D function helps in creating data that TensorFlowJS understands well. As our dataset is a flat array, we will need to pass the shape as the second parameter to this function. Our next step will be to create<strong> testing and training dataset</strong>.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Creating the training and testing Dataset" duration="15">
+        <p>There are multiple ways to get started with any project, in this case, to keep our project as simple as possible and concentrate on Neural Network, we&#39;ve provided you with basic code along with the dataset.</p>
+<p>We will divide the dataset into two parts <code>trainingData</code> and <code>testingData.</code></p>
+<p>To divide the <code>iris.json</code> into these two parts, such that they don&#39;t have any intersection, we will run the command:</p>
+<pre><code>node generateTest.js
+</code></pre>
+<p>The <code>trainingData</code>  will have the shape of <code>[130,4]</code>as the length of training dataset array is 130 and the feature under each object are <code>4</code> and will use the iris.json</p>
+<pre><code>const trainingData = tf.tensor2d(iris.map(item=&gt; [
+        item.sepal_length, item.sepal_width, item.petal_length, item.petal_width
+    ]
+),[130,4])
+</code></pre>
+<aside class="special"><p>We&#39;ve given you the trainingData function and the iris Dataset to save your time and make sure you&#39;re starting on a solid foundation. Below , you&#39;ll have an opportunity to write your own code.</p>
+</aside>
+<p>You need to create the <code>testingData</code> similarly, using <code>testing.json.</code></p>
+<p>Declare a variable <code>testingData,</code>think about its shape and write the code for the testing Set.</p>
+<pre><code> // Your code here
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Writing the Output Data function" duration="10">
+        <p>The output will be based on the neuron activation. We will write the output function such that it we get an array of length 3 every time with one of the values closer to one and rest two closer to zero. </p>
+<pre><code>const outputData = tf.tensor2d(iris.map(item =&gt; [
+    item.species === &#39;setosa&#39; ? 1 : 0,
+    item.species === &#39;virginica&#39; ? 1 : 0,
+    item.species === &#39;versicolor&#39; ? 1 : 0
+
+]), [130,3])
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Building your Neural Network Model" duration="15">
+        <p>This procedure consists of three steps:</p>
+<ul>
+<li>Creating <code>Input Layer</code> for the model.</li>
+<li>Creating <code>Hidden Layer</code> for the model.</li>
+<li>Creating  <code>Output Layer</code> for the model.</li>
+</ul>
+<p><img style="max-width: 361.81px" src="img/c9db482629fb40d9.png"></p>
+<h2>Creating Model</h2>
+<p>Creating a model in TensorFlow JS is super easy with a single line of code:</p>
+<pre><code>const model = tf.sequential();</code></pre>
+<h2>Adding Input Layer</h2>
+<p>Here, we need to add the <code>Input Layer</code> to our model. Since, we have four features, we will use 4 input nodes.</p>
+<pre><code>model.add(tf.layers.dense({
+    inputShape: [4],
+    activation: &#34;relu&#34;,
+    units: 5
+}))</code></pre>
+<h2>Adding Output Layer And Hidden Layer</h2>
+<pre><code>// Write code here</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Final Steps" duration="10">
+        <h2>Compiling your Model</h2>
+<p>We need to use model.compile function with an optimizer to decrease the loss.</p>
+<pre><code>model.compile({
+    loss: &#34;meanSquaredError&#34;,
+    optimizer: tf.train.adam()
+})</code></pre>
+<h2>Fitting and Predicting your Model</h2>
+<p>Now, you can feed your model with the training and <code>OutputData</code> and predict new Data.</p>
+<p>You can also validate your results using your <code>testingData</code>.</p>
+<p>Finally, you can print the results in the form of an Array on the screen using</p>
+<p><code>testingData.print()</code>.</p>
+<pre><code> async function train_data(){
+   for(let i=0;i&lt;10;i++){
+      const res = await model.fit(trainingData,
+                  outputData,{epochs: 5000});  
+      console.log(res.history.loss[0]);          
+   }
+}</code></pre>
+<p>Now, you can write the main function which will call <code>train_data</code> and will predict the <code>output</code> after <code>train_data</code> will complete its execution.</p>
+<pre><code>async function main() {
+   let train = await train_data();
+  }</code></pre>
+<p>After training inside the main function, To predict the result, we will use <code>model.predict</code> function with <code>testingData</code> as parameter.</p>
+<p>Finally, we will going to print the result using <code>.print()</code> function.</p>
+<pre><code>async function main() {
+   await train_data();
+   // Write your predict function here and print the results
+  }</code></pre>
+<p>After you have completed this code, you can directly run the file using, node index.js</p>
+<pre><code>node index.js</code></pre>
+<p>The model will classify the <code>testingData</code> into the matrices of the form <code>[1,0,0], [0,1,0]</code> or <code>[0,0,1]</code> which directly relates as follows:</p>
+<p>As per our <code>OutputData</code> function:</p>
+<p><code>[1,0,0]</code> corresponds to setosa</p>
+<p><code>[0,1,0]</code> corresponds to verginica</p>
+<p><code>[0,0,1]</code> corresponds to versicolor</p>
+<p>When we run this file with the given testing dataset, we should see the results as follows, the loss history will be shown as follows:</p>
+<p><img style="max-width: 624.00px" src="img/27370bdf586fb9f.png"></p>
+<p>This clearly indicates our testing data contains versicolor, verginica and setosa. </p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-49880327-14', 'auto');
+
+    (function() {
+      var gaCodelab = '';
+      if (gaCodelab) {
+        ga('create', gaCodelab, 'auto', {name: 'codelab'});
+      }
+
+      var gaView;
+      var parts = location.search.substring(1).split('&');
+      for (var i = 0; i < parts.length; i++) {
+        var param = parts[i].split('=');
+        if (param[0] === 'viewga') {
+          gaView = param[1];
+          break;
+        }
+      }
+      if (gaView && gaView !== gaCodelab) {
+        ga('create', gaView, 'auto', {name: 'view'});
+      }
+    })();
+  </script>
+
+</body>
+</html>
